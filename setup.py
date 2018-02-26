@@ -37,7 +37,11 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=dependencies,
-    entry_points={},
+    entry_points={
+        'console_scripts': [
+            'picomusic=picomusic.scripts.picomusic:main.start',
+        ],
+    },
     classifiers=[
         # As from http://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 1 - Planning',

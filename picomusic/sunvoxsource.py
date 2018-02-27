@@ -20,7 +20,7 @@ class SunvoxSource(StreamingSource):
         self._bytes_per_sample = bytes_per_sample
         self._bytes_per_second = freq * bytes_per_sample * channels
 
-    def get_audio_data(self, bytes) -> AudioData:
+    def get_audio_data(self, bytes) -> (AudioData, None):
         offset = self._tell
         timestamp = float(offset) / self._bytes_per_second
         # Align to sample size

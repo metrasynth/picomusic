@@ -11,10 +11,11 @@ from picomusic import __version__
 IDEAL_BUFFER_SIZE = 0.5
 
 
-# Make audio playback more responsive than default Pyglet setting of 1 or 2 seconds.
+# Make audio playback more responsive than default 1+ seconds.
 if sys.platform == 'win32':
     pyglet.options['audio'] = ('directsound',)
-    from pyglet.media.drivers.directsound.interface import DirectSoundBufferFactory
+    from pyglet.media.drivers.directsound.interface import \
+        DirectSoundBufferFactory
     DirectSoundBufferFactory.default_buffer_size = IDEAL_BUFFER_SIZE
 else:
     pyglet.options['audio'] = ('openal',)

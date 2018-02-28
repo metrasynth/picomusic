@@ -1,8 +1,7 @@
 import ctypes
 
-from pyglet.media import StreamingSource, AudioData, AudioFormat
 import sunvox.api as sv
-
+from pyglet.media import AudioData, AudioFormat, StreamingSource
 
 _BUFFERS = {}
 

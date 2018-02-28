@@ -1,12 +1,10 @@
 import sys
 
 import begin
-from IPython import start_ipython
 import pyglet
-from traitlets.config import get_config
-
+from IPython import start_ipython
 from picomusic import __version__
-
+from traitlets.config import get_config
 
 IDEAL_BUFFER_SIZE = 0.5
 

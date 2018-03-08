@@ -6,6 +6,8 @@ from IPython import start_ipython
 from traitlets.config import get_config
 
 from .. import __version__
+from ..note import Note
+
 
 IDEAL_BUFFER_SIZE = 0.5
 
@@ -22,17 +24,26 @@ else:
     OpenALAudioPlayer11._ideal_buffer_size = IDEAL_BUFFER_SIZE
 
 
-BANNER = f'Welcome to PicoMusic v{__version__}!\n'
+BANNER = f'''\
+Welcome to PicoMusic v{__version__}!
+
+For your convenience, the following variables are available:
+
+    '''
 
 
 @begin.start
 @begin.logging
 def main():
+    user_ns = {
+        'Note': Note,
+    }
     c = get_config()
     c.InteractiveShellApp.exec_lines = [
         '%gui pyglet',
     ]
-    c.InteractiveShell.banner2 = BANNER
+    c.InteractiveShell.banner2 = (
+        BANNER + ', '.join(sorted(user_ns.keys())) + '\n')
     c.InteractiveShell.confirm_exit = False
     c.InteractiveShellApp.display_banner = True
-    start_ipython(config=c)
+    start_ipython(config=c, user_ns=user_ns)

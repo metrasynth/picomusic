@@ -6,8 +6,8 @@ from IPython import start_ipython
 from traitlets.config import get_config
 
 from .. import __version__
+from ..chord import Chord
 from ..note import Note
-
 
 IDEAL_BUFFER_SIZE = 0.5
 
@@ -36,6 +36,7 @@ For your convenience, the following variables are available:
 @begin.logging
 def main():
     user_ns = {
+        'Chord': Chord,
         'Note': Note,
     }
     c = get_config()

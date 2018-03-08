@@ -8,3 +8,7 @@ class Pitch:
     @property
     def label(self):
         return f'{self.name}{self.octave}'
+
+    def __repr__(self):
+        return f'<Pitch name={repr(self.name)} octave={self.octave} ' \
+               f'sp_value={hex(self.sp_value)}'

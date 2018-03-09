@@ -8,7 +8,10 @@ class Stage:
         self.timeline = Timeline()
 
     def play_once(self):
-        project = project_from_timeline(self.timeline)
-        self.slot.load(project)
+        self.slot.load(self.sunvox_project)
         self.slot.play_from_beginning()
         self.slot.set_autostop(True)
+
+    @property
+    def sunvox_project(self):
+        return project_from_timeline(self.timeline)

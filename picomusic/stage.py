@@ -9,8 +9,6 @@ class Stage:
 
     def play_once(self):
         project = project_from_timeline(self.timeline)
-        with open('/tmp/foo.sunvox', 'wb') as f:
-            project.write_to(f)
         self.slot.load(project)
         self.slot.play_from_beginning()
         self.slot.set_autostop(True)

@@ -1,6 +1,5 @@
-from .sunsynthvoice import SunsynthVoice
+from picomusic.voices.sunvoxvoice import SunsynthVoice
 
 
 class Piano(SunsynthVoice):
-
-    sunsynth_filename = 'piano.sunsynth'
+    """A basic sampled piano."""

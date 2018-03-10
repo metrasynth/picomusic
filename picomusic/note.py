@@ -1,6 +1,6 @@
 from fractions import Fraction
 
-from .pitches import equal_temperament
+from .tunings import equal_temperament
 from .voices import PIANO
 
 

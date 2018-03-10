@@ -43,8 +43,11 @@ def project_from_timeline(timeline):
                             assert track < 16, \
                                 f'Track overflow at {start_tick}'
                         cell = pattern.data[start_tick][track]
-                        cell.note = SET_PITCH
-                        cell.val = nn.pitch.sp_value
+                        if nn.pitch.sp_value is not None:
+                            cell.note = SET_PITCH
+                            cell.val = nn.pitch.sp_value
+                        else:
+                            cell.note = nn.pitch.sunvox_note
                         cell.module = mm
                         for tick in range(start_tick, stop_tick + 1):
                             if tick < ticks:

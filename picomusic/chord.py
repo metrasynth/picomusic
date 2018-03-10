@@ -1,7 +1,7 @@
 from fractions import Fraction
 
 from .note import Note
-from .pitches import equal_temperament as eq_temp
+from .tunings import equal_temperament
 from .voices import PIANO
 
 

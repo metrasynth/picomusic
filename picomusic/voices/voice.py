@@ -14,17 +14,16 @@ class Voice:
         from picomusic.movement import Movement
         from picomusic.note import Note
         from picomusic.part import Part
-        from picomusic.player import global_player
-        if isinstance(notes, Note):
+        from picomusic.stagemanager import StageManager
         if isinstance(notes, (Note, str)):
             notes = [notes]
-        player = player or global_player()
-        stage = player.audition
         pitches = self.default_tuning.pitches
         notes = [
             Note(pitches[note]) if isinstance(note, str) else note
             for note in notes
         ]
+        manager = StageManager()
+        stage = manager.audition
         part = Part(self)
         movement = Movement()
         for note in notes:

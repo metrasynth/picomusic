@@ -3,12 +3,14 @@
 Based on:
 - http://stackoverflow.com/questions/566746
 - http://stackoverflow.com/questions/263890
+
+TODO: be more specific with exception handling.
 """
 
 import os
+import platform
 import shlex
 import struct
-import platform
 import subprocess
 
 
@@ -43,7 +45,7 @@ def _get_terminal_size_windows():
             sizex = right - left + 1
             sizey = bottom - top + 1
             return sizex, sizey
-    except:  # TODO: be more specific
+    except:  # noqa: E722
         pass
 
 
@@ -52,7 +54,7 @@ def _get_terminal_size_tput():
         cols = int(subprocess.check_call(shlex.split('tput cols')))
         rows = int(subprocess.check_call(shlex.split('tput lines')))
         return cols, rows
-    except:  # TODO: be more specific
+    except:  # noqa: E722
         pass
 
 
@@ -64,7 +66,7 @@ def _get_terminal_size_linux():
             cr = struct.unpack(
                 'hh', fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
             return cr
-        except:  # TODO: be more specific
+        except:  # noqa: E722
             pass
     cr = ioctl_GWINSZ(0) or ioctl_GWINSZ(1) or ioctl_GWINSZ(2)
     if not cr:
@@ -72,11 +74,11 @@ def _get_terminal_size_linux():
             fd = os.open(os.ctermid(), os.O_RDONLY)
             cr = ioctl_GWINSZ(fd)
             os.close(fd)
-        except:  # TODO: be more specific
+        except:  # noqa: E722
             pass
     if not cr:
         try:
             cr = (os.environ['LINES'], os.environ['COLUMNS'])
-        except:  # TODO: be more specific
+        except:  # noqa: E722
             return None
     return int(cr[1]), int(cr[0])

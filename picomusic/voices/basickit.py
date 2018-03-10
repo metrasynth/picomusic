@@ -1,5 +1,5 @@
-from .sunvoxvoice import SunvoxVoice
 from ..tunings import drumkit
+from .sunvoxvoice import SunvoxVoice
 
 
 class BasicKit(SunvoxVoice):

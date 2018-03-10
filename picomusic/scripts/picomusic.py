@@ -1,6 +1,6 @@
-from fractions import Fraction
 import sys
-from textwrap import wrap, indent
+from fractions import Fraction
+from textwrap import indent, wrap
 
 import begin
 import pyglet
@@ -10,12 +10,12 @@ from traitlets.config import get_config
 
 from .. import __version__, lengths
 from ..chord import Chord
-from ..utils.terminalwidth import get_terminal_size
 from ..note import Note
 from ..part import Part
 from ..phrase import Phrase
 from ..stagemanager import StageManager
 from ..tunings import drumkit
+from ..utils.terminalwidth import get_terminal_size
 from ..voices import BASIC_KIT, PIANO
 
 IDEAL_BUFFER_SIZE = 0.5
@@ -44,6 +44,8 @@ For your convenience, the following are available:
 @begin.start
 @begin.logging
 def main():
+    def shortname(v, k):
+        return getattr(v, '__name__', k).split('.')[-1]
     user_ns = {
         'BASIC_KIT': BASIC_KIT,
         'Chord': Chord,
@@ -70,8 +72,6 @@ def main():
         '%gui pyglet',
     ]
     c.TerminalInteractiveShell.prompts_class = ClassicPrompts
-    def shortname(v, k):
-        return getattr(v, '__name__', k).split('.')[-1]
     names = ', '.join(
         k if k == shortname(v, k) else f'{k} ({shortname(v, k)})'
         for k, v in sorted(user_ns.items())

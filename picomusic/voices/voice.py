@@ -4,13 +4,26 @@ from ..tunings import equal_temperament
 
 
 class Voice:
+    """
+    A distinct sound within a performance.
+
+    :cvar default_tuning: Module
+    """
 
     default_tuning = equal_temperament
 
     def sunvox_module(self) -> Module:
+        """
+        Override this in subclasses to return a SunVox module for the voice.
+        """
         raise NotImplemented()
 
-    def audition(self, notes, player=None):
+    def audition(self, notes):
+        """
+        Audition note(s) using this voice.
+
+        :param notes: Notes to play (Note, str, or list of Note or str)
+        """
         from picomusic.note import Note
         from picomusic.part import Part
         from picomusic.phrase import Phrase
@@ -31,3 +44,6 @@ class Voice:
         stage.timeline.clear()
         stage.timeline.place(phrase)
         stage.play_once()
+
+    def __repr__(self):
+        return f'<{self.__class__.__name__}>'

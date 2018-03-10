@@ -5,11 +5,19 @@ from .timeline import Timeline
 
 
 class Stage:
+    """
+    Organizes related aspects of a performance.
+
+    :ivar slot: SunVox playback slot used to render audio.
+    :ivar timeline: Timeline used to organize performance events.
+    """
+
     def __init__(self, sunvox) -> None:
         self.slot = sunvox.Slot()
         self.timeline = Timeline()
 
     def play_once(self) -> None:
+        """Play the performance one time."""
         self.stop(reset=True)
         self.slot.load(self.sunvox_project)
         self.slot.set_autostop(True)
@@ -43,5 +51,6 @@ class Stage:
         return self.slot.end_of_song()
 
     @property
-    def sunvox_project(self):
+    def sunvox_project(self) -> Project:
+        """The Rendered SunVox project for this stage's timeline."""
         return project_from_timeline(self.timeline)

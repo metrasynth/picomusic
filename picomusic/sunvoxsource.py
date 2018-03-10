@@ -7,8 +7,16 @@ _BUFFERS = {}
 
 
 class SunvoxSource(StreamingSource):
+    """A bridge between the SunVox library and Pyglet audio playback."""
 
     def __init__(self, api, freq, channels, bytes_per_sample) -> None:
+        """
+        :param api: Instance of the SunVox API to use for audio rendering.
+        :param freq: Frequency, as frames per second.
+        :param channels: Channels (1=mono, 2=stereo).
+        :param bytes_per_sample: Bytes per sample
+            (2=16-bit int, 4=32-bit float).
+        """
         super().__init__()
         self.audio_format = AudioFormat(channels, bytes_per_sample * 8, freq)
         self.sunvox = api
@@ -43,7 +51,10 @@ class SunvoxSource(StreamingSource):
         return AudioData(data, len(data), timestamp, duration, [])
 
 
-def inprocess_sunvox_source():
+def inprocess_sunvox_source() -> SunvoxSource:
+    """
+    :return: A SunvoxSource configured to render in the current process.
+    """
     flags = (sv.SV_INIT_FLAG.ONE_THREAD |
              sv.SV_INIT_FLAG.AUDIO_INT16 |
              sv.SV_INIT_FLAG.USER_AUDIO_CALLBACK |

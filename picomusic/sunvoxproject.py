@@ -1,11 +1,14 @@
 from rv.api import NOTECMD, Pattern, Project
 
+from .timeline import Timeline
+
 EMPTY = NOTECMD.EMPTY
 NOTE_OFF = NOTECMD.NOTE_OFF
 SET_PITCH = NOTECMD.SET_PITCH
 
 
-def project_from_timeline(timeline):
+def project_from_timeline(timeline: Timeline) -> Project:
+    """Render a Timeline to a SunVox project."""
     project = Project()
     # 120 BPM, 48 ticks per quarter note
     project.initial_bpm = 120 * 2

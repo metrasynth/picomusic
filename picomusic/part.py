@@ -1,4 +1,5 @@
 class Part:
+    """A part of a composition, which may have a name and a certain voice."""
 
     def __init__(self, voice=None, name=None):
         self.voice = voice

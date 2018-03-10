@@ -4,6 +4,7 @@ PlacedPhrase = namedtuple('PlacedPhrase', 'x y phrase')
 
 
 class Timeline:
+    """A collection of all timed elements used in a composition."""
 
     def __init__(self):
         self.phrases = []
@@ -12,9 +13,16 @@ class Timeline:
         return iter(self.phrases)
 
     def clear(self):
+        """Remove all phrases from the timeline."""
         self.phrases.clear()
 
     def place(self, phrase, x=None, y=None):
+        """
+        Place a note on the timeline.
+        :param phrase:
+        :param x: Starting tick for phrase; None to place at end.
+        :param y: Y position to place phrase; None to find open space.
+        """
         if x is None:
             if self.phrases:
                 p = self.final_phrases[0]
@@ -41,6 +49,7 @@ class Timeline:
 
     @property
     def parts(self) -> set:
+        """Return a set of Parts used across all phrases."""
         p = set()
         for placed in self:
             p.update(placed.phrase.parts)

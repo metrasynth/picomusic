@@ -1,13 +1,22 @@
+from fractions import Fraction
 import sys
+from textwrap import wrap, indent
 
 import begin
 import pyglet
 from IPython import start_ipython
+from IPython.terminal.prompts import ClassicPrompts
 from traitlets.config import get_config
 
-from .. import __version__
+from .. import __version__, lengths
 from ..chord import Chord
+from ..utils.terminalwidth import get_terminal_size
 from ..note import Note
+from ..part import Part
+from ..phrase import Phrase
+from ..stagemanager import StageManager
+from ..tunings import drumkit
+from ..voices import BASIC_KIT, PIANO
 
 IDEAL_BUFFER_SIZE = 0.5
 
@@ -27,24 +36,50 @@ else:
 BANNER = f'''\
 Welcome to PicoMusic v{__version__}!
 
-For your convenience, the following variables are available:
+For your convenience, the following are available:
 
-    '''
+'''
 
 
 @begin.start
 @begin.logging
 def main():
     user_ns = {
+        'BASIC_KIT': BASIC_KIT,
         'Chord': Chord,
+        'F': Fraction,
         'Note': Note,
+        'PIANO': PIANO,
+        'Part': Part,
+        'Phrase': Phrase,
+        'dotted': lengths.dotted,
+        'double_whole': lengths.double_whole,
+        'drumkit': drumkit,
+        'eighth': lengths.eighth,
+        'half': lengths.half,
+        'manager': StageManager(),
+        'quarter': lengths.quarter,
+        'sixteenth': lengths.sixteenth,
+        'sixty_fourth': lengths.sixty_fourth,
+        'thirty_second': lengths.thirty_second,
+        'triplet': lengths.triplet,
+        'whole': lengths.whole,
     }
     c = get_config()
     c.InteractiveShellApp.exec_lines = [
         '%gui pyglet',
     ]
-    c.InteractiveShell.banner2 = (
-        BANNER + ', '.join(sorted(user_ns.keys())) + '\n')
+    c.TerminalInteractiveShell.prompts_class = ClassicPrompts
+    def shortname(v, k):
+        return getattr(v, '__name__', k).split('.')[-1]
+    names = ', '.join(
+        k if k == shortname(v, k) else f'{k} ({shortname(v, k)})'
+        for k, v in sorted(user_ns.items())
+    ) + '\n'
+    width, _ = get_terminal_size()
+    names = '\n'.join(wrap(names, width - 5))
+    names = indent(names, '    ')
+    c.InteractiveShell.banner2 = BANNER + names + '\n'
     c.InteractiveShell.confirm_exit = False
     c.InteractiveShellApp.display_banner = True
     start_ipython(config=c, user_ns=user_ns)

@@ -7,9 +7,9 @@ from .voices import PIANO
 
 class Chord:
 
-    def __init__(self, pitches, length='1/4'):
+    def __init__(self, pitches, length='1/4', tuning=equal_temperament):
         pitches = [
-            eq_temp.pitches[pitch] if isinstance(pitch, str) else pitch
+            tuning.pitches[pitch] if isinstance(pitch, str) else pitch
             for pitch in pitches
         ]
         self.pitches = pitches

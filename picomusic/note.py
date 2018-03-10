@@ -1,14 +1,15 @@
 from fractions import Fraction
 
+from .lengths import quarter
 from .tunings import equal_temperament
 from .voices import PIANO
 
 
 class Note:
 
-    def __init__(self, pitch, length='1/4'):
+    def __init__(self, pitch, length=quarter, tuning=equal_temperament):
         if isinstance(pitch, str):
-            pitch = equal_temperament.pitches[pitch]
+            pitch = tuning.pitches[pitch]
         self.pitch = pitch
         self.length = Fraction(length)
 

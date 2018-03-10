@@ -11,9 +11,9 @@ class Voice:
         raise NotImplemented()
 
     def audition(self, notes, player=None):
-        from picomusic.movement import Movement
         from picomusic.note import Note
         from picomusic.part import Part
+        from picomusic.phrase import Phrase
         from picomusic.stagemanager import StageManager
         if isinstance(notes, (Note, str)):
             notes = [notes]
@@ -25,9 +25,9 @@ class Voice:
         manager = StageManager()
         stage = manager.audition
         part = Part(self)
-        movement = Movement()
+        phrase = Phrase()
         for note in notes:
-            movement.place(0, 0, part, note)
+            phrase.place(0, 0, part, note)
         stage.timeline.clear()
-        stage.timeline.place(0, 0, movement)
+        stage.timeline.place(phrase)
         stage.play_once()

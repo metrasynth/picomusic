@@ -18,24 +18,24 @@ def project_from_timeline(timeline):
     modules = list(voice_modules.values())
     project += modules
     project.output << modules
-    for placed_movement in timeline:
-        movement = placed_movement.movement
-        ticks = movement.ticks
-        for i, part in enumerate(movement.parts):
+    for placed_phrase in timeline:
+        p = placed_phrase.phrase
+        ticks = p.ticks
+        for i, part in enumerate(p.parts):
             pattern = Pattern(
                 tracks=16,
-                x=placed_movement.x,
-                y=placed_movement.y + i * 10,
+                x=placed_phrase.x,
+                y=placed_phrase.y + i * 10,
                 lines=ticks,
             )
             project += pattern
             reserved = set()
             module = voice_modules[part.voice]
             mm = module.index + 1
-            for placed_note in movement:
+            for placed_note in p:
                 if placed_note.part is part:
-                    start_tick = movement.placed_note_on_tick(placed_note)
-                    stop_tick = movement.placed_note_off_tick(placed_note)
+                    start_tick = p.placed_note_on_tick(placed_note)
+                    stop_tick = p.placed_note_off_tick(placed_note)
                     for nn in placed_note.notes:
                         track = 0
                         while (start_tick, track) in reserved:

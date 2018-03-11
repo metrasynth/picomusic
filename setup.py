@@ -43,6 +43,14 @@ setup(
             'picomusic=picomusic.scripts.picomusic:main.start',
         ],
     },
+    keywords='music sunvox learning',
+    project_urls={
+        'Documentation': 'https://picomusic.readthedocs.io/en/latest/',
+        'Funding': 'https://www.patreon.com/queries',
+        'Source': 'https://github.com/metrasynth/picomusic',
+        'Tracker': 'https://github.com/metrasynth/picomusic/issues',
+    },
+    python_requires='~=3.6',
     classifiers=[
         # As from http://pypi.python.org/pypi?%3Aaction=list_classifiers
         # 'Development Status :: 1 - Planning',

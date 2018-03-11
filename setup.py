@@ -21,7 +21,7 @@ def read(*names, **kwargs):
 
 
 setup(
-    name='picomusic',
+    name='PicoMusic',
     version=picomusic.__version__,
     url='https://github.com/metrasynth/picomusic',
     license='MIT',

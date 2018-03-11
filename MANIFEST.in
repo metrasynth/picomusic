@@ -20,3 +20,5 @@ global-exclude *.py[cod] __pycache__ *.so *.dylib
 
 include *.txt
 recursive-include requirements *.txt
+
+recursive-include picomusic/voices *.sunsynth *.sunvox

@@ -16,6 +16,8 @@ Fixes
 
 - Correct the singleton implementation of ``StageManager``.
 
+- Add all package requirements.
+
 
 0.1.0.dev1 (2018-03-11)
 -----------------------

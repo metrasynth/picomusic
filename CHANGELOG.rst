@@ -18,6 +18,8 @@ Fixes
 
 - Add all package requirements.
 
+- Include package requirements in ``setup.py``.
+
 
 0.1.0.dev1 (2018-03-11)
 -----------------------

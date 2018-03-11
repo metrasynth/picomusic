@@ -9,15 +9,15 @@ SETUP_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 sys.path.append(SETUP_DIR)
 import picomusic  # NOQA isort:skip
 
-dependencies = [
-]
-
 
 def read(*names, **kwargs):
     return io.open(
         os.path.join(os.path.dirname(__file__), *names),
         encoding=kwargs.get('encoding', 'utf8')
     ).read()
+
+
+dependencies = read('requirements/base.txt').splitlines()
 
 
 setup(

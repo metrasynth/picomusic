@@ -1,5 +1,3 @@
-from typing import Any
-
 from .stage import Stage
 from .sunvoxsource import inprocess_sunvox_source
 from .utils.singleton import singleton

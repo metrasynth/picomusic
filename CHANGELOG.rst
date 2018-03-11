@@ -8,6 +8,10 @@ Changelog
 This is the initial release of PicoMusic.
 
 
+0.1.0.dev3 (in development)
+---------------------------
+
+
 0.1.0.dev2 (2018-03-11)
 -----------------------
 

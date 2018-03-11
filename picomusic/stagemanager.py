@@ -2,8 +2,10 @@ from typing import Any
 
 from .stage import Stage
 from .sunvoxsource import inprocess_sunvox_source
+from .utils.singleton import singleton
 
 
+@singleton
 class StageManager:
     """Manages playback of performances on stages.
 
@@ -15,13 +17,6 @@ class StageManager:
     :ivar audition: Stage used for auditioning voices and phrases.
     :ivar ui_sounds: Stage used for user interface feedback.
     """
-
-    _instance = None
-
-    def __new__(cls) -> Any:
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
-        return cls._instance
 
     def __init__(self):
         self.source = inprocess_sunvox_source()

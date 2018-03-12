@@ -11,6 +11,11 @@ This is the initial release of PicoMusic.
 0.1.0.dev3 (in development)
 ---------------------------
 
+Changes
+.......
+
+- Documentation improvements.
+
 Fixes
 .....
 

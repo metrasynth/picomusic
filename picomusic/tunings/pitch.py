@@ -26,9 +26,5 @@ class Pitch:
         return f'{self.name}{self.octave or ""}'
 
     def __repr__(self):
-        if self.sp_value is not None:
-            return f'<Pitch name={repr(self.name)} octave={self.octave} ' \
-                   f'sp_value={hex(self.sp_value)}>'
-        else:
-            return f'<Pitch name={repr(self.name)} octave={self.octave} ' \
-                   f'sunvox_note={str(self.sunvox_note)}>'
+        return f'<Pitch name={repr(self.name)} octave={self.octave} ' \
+               f'sp_value={hex(self.sp_value)}>'

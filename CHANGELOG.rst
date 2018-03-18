@@ -14,6 +14,8 @@ This is the initial release of PicoMusic.
 Changes
 .......
 
+- Simplify ``Pitch.__repr__()`` for better use within tutorials.
+
 - Documentation improvements.
 
 Fixes

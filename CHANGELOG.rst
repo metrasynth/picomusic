@@ -8,6 +8,15 @@ Changelog
 This is the initial release of PicoMusic.
 
 
+0.1.0.dev4 (2018-03-18)
+-----------------------
+
+Fixes
+.....
+
+- Fix ``Pitch.__repr__()``.
+
+
 0.1.0.dev3 (2018-03-18)
 -----------------------
 

@@ -50,6 +50,7 @@ def main():
         'BASIC_KIT': BASIC_KIT,
         'Chord': Chord,
         'F': Fraction,
+        'Fraction': Fraction,
         'Note': Note,
         'PIANO': PIANO,
         'Part': Part,

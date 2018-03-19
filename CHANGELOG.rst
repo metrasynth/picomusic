@@ -16,6 +16,9 @@ Changes
 
 - Simplify ``Pitch.__repr__()`` for better use within tutorials.
 
+- Add full ``Fraction`` name to interactive namespace,
+  so that the repr of a Fraction instance can be entered to get that fraction.
+
 - Documentation improvements.
 
 Fixes

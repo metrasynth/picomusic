@@ -22,7 +22,7 @@ class Note:
         self.length = Fraction(length)
 
     def __repr__(self):
-        return f"Note(pitch={repr(self.pitch.label)}, length='{self.length}'>"
+        return f"<Note pitch={repr(self.pitch.label)} length='{self.length}'>"
 
     def audition(self, voice=PIANO):
         """

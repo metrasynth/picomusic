@@ -19,6 +19,8 @@ Changes
 - Add full ``Fraction`` name to interactive namespace,
   so that the repr of a Fraction instance can be entered to get that fraction.
 
+- Fix ``Note.__repr__()`` to be consistently formatted.
+
 - Documentation improvements.
 
 Fixes
